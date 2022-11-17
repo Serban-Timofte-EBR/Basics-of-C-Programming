@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1668694248 source:/Users/serbantimofte/Documents/CProjects/BPC/5-Week8/main.c
+	<stdio.h>
+	<stdlib.h>
+
