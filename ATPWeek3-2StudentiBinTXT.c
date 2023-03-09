@@ -19,6 +19,7 @@ int main()
     FILE* g;
     Student s;
     int i,n;
+    g = NULL;
 
     printf("Deschidem fisierul binar pentru citire");
     f = fopen("Fisbin.dat", "rb");
