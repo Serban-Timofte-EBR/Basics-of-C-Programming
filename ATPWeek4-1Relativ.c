@@ -1,12 +1,6 @@
 //Creare fisier organizat relativ
 //De la tastatura introduce elemente (populare)
 //Scriem elemente in fisier in functie de elementul cod care reprezinta pozitia elementului din fisier
-//fisiere organizate relativ
-// 1 - Creare fisier
-// 2 - Listare din fisier binar in fisier text
-// 3 - Operatie asupra fisierului de la pct. 1 (stergere articol(e) care indeplinesc o conditie)
-// 4 - Listare fisier binar nou
-// 5 - Exercitii/Tema
 
 #include<stdio.h>
 typedef struct{
