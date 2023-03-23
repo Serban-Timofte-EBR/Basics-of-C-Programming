@@ -1,73 +1,78 @@
 //Creare fisier organizat relativ
 //De la tastatura introduce elemente (populare)
 //Scriem elemente in fisier in functie de elementul cod care reprezinta pozitia elementului din fisier
+//fisiere organizate relativ
+// 1 - Creare fisier
+// 2 - Listare din fisier binar in fisier text
+// 3 - Operatie asupra fisierului de la pct. 1 (stergere articol(e) care indeplinesc o conditie)
+// 4 - Listare fisier binar nou
+// 5 - Exercitii/Tema
+
 #include<stdio.h>
 typedef struct{
-	char denumire[20];
-	float pret;
-	int cant[12];
-	char is;
+    char denumire[20];
+    float pret;
+    int cant[12];
+    char is;
 } PRODUS;
 
 int nrart(FILE *f, int l)
 {
-  long p; 
-  int n;
-  p=ftell(f); 
-  fseek(f,0,2); 
-  n=ftell(f)/l;
-  fseek(f,p,0);
-  return n;
+    long p;
+    int n;
+    p=ftell(f);
+    fseek(f,0,2);
+    n=ftell(f)/l;
+    fseek(f,p,0);
+    return n;
 }
 
 int main()
 { FILE *f;
-  char nume[20]; 
-  PRODUS p; 
-  int i, cod;
+    char nume[20];
+    PRODUS p;
+    int i, cod;
 
-  printf("\nFisier: ");
-  gets(nume);
-  f=fopen(nume,"wb+");  
- //deschide pentru citire si scriere. daca fis exista, este suprascris, altfel este creat
- 
-  printf("\n Cod produs: ");
-  scanf("%d",&cod); 
-  while(!feof(stdin))
-  {
-     if(cod>=nrart(f,sizeof(PRODUS)))
-           {
-            p.is=0; 
+    f=fopen("Produse.dat","wb+");
+    //deschide pentru citire si scriere. daca fis exista, este suprascris, altfel este creat
+
+    printf("\n Cod produs: ");
+    scanf("%d",&cod);
+    while(!feof(stdin))
+    {
+        if(cod>=nrart(f,sizeof(PRODUS)))
+        {
+            p.is=0;
             fseek(f,0,2);
             for(i=nrart(f,sizeof(PRODUS));i<=cod;i++)
-            fwrite(&p,sizeof(PRODUS), 1, f);
-           }
-     fseek(f,cod*sizeof(PRODUS),0); 
-     fread(&p,sizeof(PRODUS), 1, f);
+                fwrite(&p,sizeof(PRODUS), 1, f);
+        }
+        fseek(f,cod*sizeof(PRODUS),0);
+        fread(&p,sizeof(PRODUS), 1, f);
 
-      if(p.is) printf("\nExista deja un produs cu acest cod");
-      else
-          {
+        if(p.is) printf("\nExista deja un produs cu acest cod");
+        else
+        {
             fseek (f,  cod*sizeof(PRODUS),  0);
-            printf("Denumire: "); 
+            printf("Denumire: ");
             fflush(stdin);
-            gets(p.denumire); 
-           
-            printf("pret:"); 
+            scanf("%s", &p.denumire);
+
+            printf("pret:");
             scanf("%f",&p.pret);
-           
-            for(i=0;i<12;i++) 
-         	 {
-              	             printf("Cant %d: ",i+1); 
-              	             scanf("%d",&p.cant[i]);
-                 }
-          
-              p.is=1; 
-              fwrite(&p,  sizeof(PRODUS),   1,   f);
-             }
-   
-       printf("\nCod nou: "); 
-       scanf("%d",&cod);
-   }
-fclose(f);
+
+            for(i=0;i<12;i++)
+            {
+                printf("Cant %d: ",i+1);
+                scanf("%d",&p.cant[i]);
+            }
+
+            p.is=1;
+            fwrite(&p,  sizeof(PRODUS),   1,   f);
+        }
+
+        printf("\nCod nou: ");
+        scanf("%d",&cod);
+    }
+    fclose(f);
 }
