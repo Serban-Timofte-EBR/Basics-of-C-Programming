@@ -36,23 +36,22 @@ void listareDataTXT(const char* numeFisBin, const char* numeFisTxt)
 
   while (!feof(f))
   {
-  if (s.is == 1)
-  {
-  fprintf(g, "\n\n%d %s\t %s\t %d\t %d\t ", s.nrmat, s.nume, "",s.grupa,s.an);
-  for (i = 0; i < 2; i++)
-  {
-  for (j = 0; j < 15; j++)
-  {
-  fprintf(g, "%d ", s.absente[i][j]);
+    if (s.is == 1)
+    {
+      fprintf(g, "\n\n%d %s\t %s\t %d\t %d\t ", s.nrmat, s.nume, "",s.grupa,s.an);
+      for (i = 0; i < 2; i++)
+      {
+        for (j = 0; j < 15; j++)
+        {
+      fprintf(g, "%d ", s.absente[i][j]);
+        }
+      }
+    }
+    fread(&s, sizeof(student), 1, f);
+    }
+    fclose(f);
+    fclose(g);
   }
-  }
-  }
-
-  fread(&s, sizeof(student), 1, f);
-  }
-  fclose(f);
-  fclose(g);
-}
 
 
 int main()
