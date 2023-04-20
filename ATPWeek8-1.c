@@ -46,7 +46,7 @@ int nrneg2(float x[], int n)
     {
         //recursivitate
         rez = nrneg2(x,n-1);
-        //conditia de oprire
+        //conditia de corespundere pt problema
         if(x[n-1]<0)
         {
             rez++;
