@@ -39,7 +39,7 @@ void conversieGraf(int nrV, int nrM, int g[][2], int mat[6][6]) {
     //constructie matrice de adiacenta
     for (int i = 0; i < nrM; i++) {
         mat[g[i][0] - 1][g[i][1] - 1] = 1;
-        mat[g[i][1] - 1][g[i][0] - 1] = 1;
+        mat[g[i][1] - 1][g[i][0] - 1] = 1; //se omite pentru graf orientat
     }
 }
 
