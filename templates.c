@@ -16,3 +16,22 @@ void maxImpare(int v[], int start, int end, int *max){
     int half2 = maxImpare(v, m+1, end, *max);
 }
 
+//backtracking
+
+int generare_s(int *x, int n, int i, int a, int b, int nr)
+{
+   int j;
+   if (i == n) {
+        if (conditie_finala(x,n))
+        {
+            nr++;
+            retine_solutia(nr, x, n);
+        }
+    }
+    else
+         for (j = a; j <= b; j++) {
+            x[i] = j;
+            nr = generare_s(x,n, i + 1, a, b,nr);
+      }
+     return nr;
+}
